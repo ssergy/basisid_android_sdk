@@ -17,11 +17,7 @@ class MainActivity : AppCompatActivity() {
         val btn: Button = findViewById(R.id.button_start)
         btn.setOnClickListener {
             val cb = CallbackSdk()
-
-
-            var token: EditText = findViewById(R.id.token)
-
-            com.sdk.basis.SdkBasisID.initBasisID("", token.text.toString(), "europe", cb)
+            com.sdk.basis.SdkBasisID.initBasisID("{API_key}", "{api_form_token}", "europe", cb)
             val intent = Intent(this, com.sdk.basis.SdkMainActivity::class.java)
             startActivity(intent)
         }
