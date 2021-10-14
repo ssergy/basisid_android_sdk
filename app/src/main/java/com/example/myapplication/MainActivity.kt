@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import com.sdk.basis.SdkBasisIDCallback
 import android.content.Intent
-import android.widget.EditText
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         btn.setOnClickListener {
             val cb = CallbackSdk()
             com.sdk.basis.SdkBasisID.initBasisID("{API_key}", "{api_form_token}", "europe", cb)
-            val intent = Intent(this, com.sdk.basis.SdkMainActivity::class.java)
+            val intent = Intent(this, com.sdk.basis.SdkBasisIDMainActivity::class.java)
             startActivity(intent)
         }
     }
