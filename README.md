@@ -1,4 +1,4 @@
-# BasisID iOS SDK
+# BasisID Android SDK
 
 ## Table of contents
 *   [Description](#description)
