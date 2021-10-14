@@ -59,7 +59,7 @@ class CallbackSdk: SdkBasisIDCallback {
 
 
 
-Then call `BasisIDSdk.initBasisID` method from the place in your code that responds to starting the verification flow.
+Then call `SdkBasisID` method from the place in your code that responds to starting the verification flow.
 
 ```
 val cb = CallbackSdk()  // your callback function
