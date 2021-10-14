@@ -9,38 +9,36 @@ implementation files('libs/SdkBasisID-release.aar')<br/>
 
 
 For example
+
+
 package com.example.myapplication
 
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Button
-import com.sdk.basis.SdkBasisIDCallback
-import android.content.Intent
-import android.widget.EditText
-
-
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val btn: Button = findViewById(R.id.button_start)
-        btn.setOnClickListener {
-            val cb = CallbackSdk()
+import androidx.appcompat.app.AppCompatActivity<br/>
+import android.os.Bundle<br/>
+import android.widget.Button<br/>
+import com.sdk.basis.SdkBasisIDCallback<br/>
+import android.content.Intent<br/>
+import android.widget.EditText<br/>
 
 
-            var token: EditText = findViewById(R.id.token)
+class MainActivity : AppCompatActivity() {<br/>
+    override fun onCreate(savedInstanceState: Bundle?) {<br/>
+        super.onCreate(savedInstanceState)<br/>
+        setContentView(R.layout.activity_main)<br/>
 
-            com.sdk.basis.SdkBasisID.initBasisID("", token.text.toString(), "europe", cb)
-            val intent = Intent(this, com.sdk.basis.SdkMainActivity::class.java)
-            startActivity(intent)
-        }
-    }
+        val btn: Button = findViewById(R.id.button_start)<br/>
+        btn.setOnClickListener {<br/>
+            val cb = CallbackSdk()<br/>
+            var token: EditText = findViewById(R.id.token)<br/>
+            com.sdk.basis.SdkBasisID.initBasisID("", token.text.toString(), "europe", cb)<br/>
+            val intent = Intent(this, com.sdk.basis.SdkMainActivity::class.java)<br/>
+            startActivity(intent)<br/>
+        }<br/>
+    }<br/>
 
-    class CallbackSdk: SdkBasisIDCallback {
-        override fun send(status: String, code: String)     {
-            println("DEBUG callbackSdk status = $status  code = $code")
-        }
-    }
-}
+    class CallbackSdk: SdkBasisIDCallback {<br/>
+        override fun send(status: String, code: String)     {<br/>
+            println("DEBUG callbackSdk status = $status  code = $code")<br/>
+        }<br/>
+    }<br/>
+}<br/>
