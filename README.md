@@ -2,7 +2,7 @@
 
 Add SdkBasisID-release.aar in libs
 
-add dependencies in build.gradle
+add dependencies in build.gradle<br/>
 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 implementation files('libs/SdkBasisID-release.aar')
 
