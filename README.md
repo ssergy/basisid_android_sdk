@@ -64,7 +64,7 @@ Then call `SdkBasisID` method from the place in your code that responds to start
 ```
 val cb = CallbackSdk()  // your callback function
 com.sdk.basis.SdkBasisID.initBasisID("{API_key}", "{api_form_token}", "europe", cb)
-val intent = Intent(this, com.sdk.basis.SdkMainActivity::class.java)
+val intent = Intent(this, com.sdk.basis.SdkBasisIDMainActivity::class.java)
 startActivity(intent)
 ```
 
