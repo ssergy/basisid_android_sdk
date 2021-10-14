@@ -8,7 +8,7 @@
 *   [Usage](#usage)
 
 ## Description
-BasisID SDK for realtime verification.
+BasisID Android for realtime verification.
 
 ## Getting started
 ### SDK keys
