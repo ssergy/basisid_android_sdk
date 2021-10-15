@@ -50,8 +50,20 @@ For receiving results from SDK you need to create a callback function:
 ```
 import com.sdk.basis.SdkBasisIDCallback
 
-class CallbackSdk: SdkBasisIDCallback {
+fun goToEnd() {
+        val intent = Intent(this, End::class.java)
+        startActivity(intent)
+    }
+
+    class CallbackSdk(val f: () -> Unit) : SdkBasisIDCallback {
         override fun send(status: String, code: String)     {
+            if (status == "ok") {
+                when (code) {
+                    "finish" -> {
+                        f()
+                    }
+                }
+            }
             println("DEBUG callbackSdk status = $status  code = $code")
         }
     }
@@ -62,7 +74,7 @@ class CallbackSdk: SdkBasisIDCallback {
 Then call `SdkBasisID` method from the place in your code that responds to starting the verification flow.
 
 ```
-val cb = CallbackSdk()  // your callback function
+val cb = CallbackSdk(::goToEnd) // your callback function
 com.sdk.basis.SdkBasisID.initBasisID("{API_key}", "{api_form_token}", "europe", cb)
 val intent = Intent(this, com.sdk.basis.SdkBasisIDMainActivity::class.java)
 startActivity(intent)
