@@ -3,6 +3,7 @@
 ## Table of contents
 *   [Description](#description)
 *   [Getting started](#getting-started)
+        *   [Requirements](#Requirements)   
 	*   [SDK keys](#sdk-keys)
 *   [Installation](#installation)
 *   [Usage](#usage)
@@ -11,6 +12,10 @@
 BasisID Android for realtime verification.
 
 ## Getting started
+
+### Requirements
+- Android sdk version 21+
+
 ### SDK keys
 Before you start please get credentials (API KEY and Secret 1) in BASIS ID CRM panel.
 
