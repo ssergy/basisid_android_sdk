@@ -60,7 +60,7 @@ fun goToEnd() {
             if (status == "ok") {
                 when (code) {
                     "finish" -> {
-                        f()
+                        f() // show your activity 
                     }
                 }
             }
