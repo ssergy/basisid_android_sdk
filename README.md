@@ -3,7 +3,7 @@
 ## Table of contents
 *   [Description](#description)
 *   [Getting started](#getting-started)
-        *   [Requirements](#Requirements)   
+	*   [Requirements](#requirements)
 	*   [SDK keys](#sdk-keys)
 *   [Installation](#installation)
 *   [Usage](#usage)
