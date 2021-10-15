@@ -72,7 +72,9 @@ startActivity(intent)
 ### Callback values
 
 Status can has 2 values: "ok" and "error".
+
 OK codes:
+
 | `OK code` | Description |
 | ----- | ----- |
 | `video` | first step completed |
