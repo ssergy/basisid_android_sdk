@@ -70,7 +70,7 @@ fun goToEnd() {
 	        when (code) {
                     "step_timeout" -> println("verification step timeout exceed")
 		    "manual_review" -> println("profile sent to manual review")
-		    "api" -> println("api system error)
+		    "api" -> println("api system error")
                 }
 	    }
             
