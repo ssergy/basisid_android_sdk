@@ -57,14 +57,23 @@ fun goToEnd() {
 
     class CallbackSdk(val f: () -> Unit) : SdkBasisIDCallback {
         override fun send(status: String, code: String)     {
+	    println("DEBUG callbackSdk status = $status  code = $code")
             if (status == "ok") {
                 when (code) {
                     "finish" -> {
                         f() // show your activity 
                     }
+		    "video" -> println("first step completed")
+		    "full" -> println("verification completed")
                 }
-            }
-            println("DEBUG callbackSdk status = $status  code = $code")
+            }else {
+	        when (code) {
+                    "step_timeout" -> println("verification step timeout exceed")
+		    "manual_review" -> println("profile sent to manual review")
+		    "api" -> println("api system error)
+                }
+	    }
+            
         }
     }
 ```
