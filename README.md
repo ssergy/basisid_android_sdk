@@ -1,4 +1,4 @@
-# BasisID iOS SDK
+# BasisID Android SDK
 
 ## Table of contents
 *   [Description](#description)
@@ -8,7 +8,7 @@
 *   [Usage](#usage)
 
 ## Description
-BasisID SDK for realtime verification.
+BasisID Android for realtime verification.
 
 ## Getting started
 ### SDK keys
@@ -33,16 +33,16 @@ Response:
 
 ## Installation
 
-Add 
 ```
-SdkBasisID-release.aar in libs dir
+Add in settings.gradle
+maven { url "https://jitpack.io" } 
+
+Add dependencies in build.gradle
+
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+implementation 'com.github.ssergy:basisid_android_sdk_jitpack:1.0.1'
 ```
 
-add dependencies
-```
-implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-implementation files('libs/SdkBasisID-release.aar')
-```
 
 ## Usage
 
@@ -50,9 +50,30 @@ For receiving results from SDK you need to create a callback function:
 ```
 import com.sdk.basis.SdkBasisIDCallback
 
-class CallbackSdk: SdkBasisIDCallback {
+fun goToEnd() {
+        val intent = Intent(this, End::class.java)
+        startActivity(intent)
+    }
+
+    class CallbackSdk(val f: () -> Unit) : SdkBasisIDCallback {
         override fun send(status: String, code: String)     {
-            println("DEBUG callbackSdk status = $status  code = $code")
+	    println("DEBUG callbackSdk status = $status  code = $code")
+            if (status == "ok") {
+                when (code) {
+                    "finish" -> {
+                        f() // show your activity 
+                    }
+		    "video" -> println("first step completed")
+		    "full" -> println("verification completed")
+                }
+            }else {
+	        when (code) {
+                    "step_timeout" -> println("verification step timeout exceed")
+		    "manual_review" -> println("profile sent to manual review")
+		    "api" -> println("api system error")
+                }
+	    }
+            
         }
     }
 ```
@@ -62,7 +83,7 @@ class CallbackSdk: SdkBasisIDCallback {
 Then call `SdkBasisID` method from the place in your code that responds to starting the verification flow.
 
 ```
-val cb = CallbackSdk()  // your callback function
+val cb = CallbackSdk(::goToEnd) // your callback function
 com.sdk.basis.SdkBasisID.initBasisID("{API_key}", "{api_form_token}", "europe", cb)
 val intent = Intent(this, com.sdk.basis.SdkBasisIDMainActivity::class.java)
 startActivity(intent)
@@ -72,6 +93,16 @@ startActivity(intent)
 ### Callback values
 
 Status can has 2 values: "ok" and "error".
+
+OK codes:
+
+| `OK code` | Description |
+| ----- | ----- |
+| `video` | first step completed |
+| `full` | verification completed |
+| `finish` | finish screen is show |
+
+
 
 
 Error codes:
