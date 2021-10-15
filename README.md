@@ -79,6 +79,8 @@ OK codes:
 | ----- | ----- |
 | `video` | first step completed |
 | `full` | verification completed |
+| `finish` | finish screen is show |
+
 
 
 
