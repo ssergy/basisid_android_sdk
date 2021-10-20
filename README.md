@@ -45,7 +45,7 @@ maven { url "https://jitpack.io" }
 Add dependencies in build.gradle
 
 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-implementation 'com.github.ssergy:basisid_android_sdk_jitpack:1.0.1'
+implementation 'com.github.ssergy:basisid_android_sdk_jitpack:1.0.2'
 ```
 
 
