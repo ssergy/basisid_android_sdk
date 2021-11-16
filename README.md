@@ -52,6 +52,8 @@ implementation 'com.github.ssergy:basisid_android_sdk_jitpack:1.0.2'
 ## Usage
 
 For receiving results from SDK you need to create a callback function:
+
+## Kotlin
 ```
 import com.sdk.basis.SdkBasisIDCallback
 
@@ -93,7 +95,93 @@ com.sdk.basis.SdkBasisID.initBasisID("{API_key}", "{api_form_token}", "europe", 
 val intent = Intent(this, com.sdk.basis.SdkBasisIDMainActivity::class.java)
 startActivity(intent)
 ```
+## Java example
 
+```
+package com.example.myapplication;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.Button;
+
+import com.sdk.basis.SdkBasisID;
+import com.sdk.basis.SdkBasisIDCallback;
+import com.sdk.basis.SdkBasisIDMainActivity;
+import android.content.Intent;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button btn = findViewById(R.id.button_start);
+        btn.setOnClickListener(view -> {
+            CallbackSdk cb = new CallbackSdk(new Command() {
+                @Override
+                public void execute() {
+                    goToEnd();
+                }
+            });
+
+            SdkBasisID.INSTANCE.initBasisID("{API_key}", "{api_form_token}", "europe", cb);
+            Intent intent = new Intent((Context)MainActivity.this, SdkBasisIDMainActivity.class);
+            MainActivity.this.startActivity(intent);
+        });
+    }
+
+    public interface Command{
+        void execute();
+    }
+
+    public final void goToEnd() {
+        Intent intent = new Intent(this, End.class);
+        this.startActivity(intent);
+    }
+
+    public static final class CallbackSdk implements SdkBasisIDCallback {
+
+        private Command cmd;
+
+        public CallbackSdk(Command cmd) {
+            super();
+            this.cmd = cmd;
+        }
+
+        @Override
+        public void send(String status, String code) {
+            System.out.println("DEBUG callbackSdk status = " + status + "  code = " + code);
+            if (status.equals("ok")) {
+                if ("finish".equals(code)) {
+                    this.cmd.execute();
+                }
+                if ("video".equals(code)) {
+                    System.out.println("first step completed");
+                }
+                if ("full".equals(code)) {
+                    System.out.println("verification completed");
+                }
+            } else {
+                if ("step_timeout".equals(code)) {
+                    System.out.println("verification step timeout exceed");
+                }
+                if ("manual_review".equals(code)) {
+                    System.out.println("profile sent to manual review");
+                }
+                if ("api".equals(code)) {
+                    System.out.println("api system error");
+                }
+            }
+        }
+    }
+}
+
+```
 
 ### Callback values
 
